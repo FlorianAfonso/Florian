@@ -1,0 +1,83 @@
+
+.logo{
+    display: flex;
+    justify-content: space-between;
+}
+
+.text-logo{
+    position: relative;
+    right: 40%;
+    font-size: 25px;
+}
+.nav { 
+    display: flex;
+    list-style: none;
+    background-color: black;
+    padding: 25px;
+    margin: 0px;
+    margin-bottom: 5px;
+
+}
+.nav a {
+    padding: 20px;
+    color: white;
+    font-size: 25px;
+}
+
+.promo {display: block;
+    width: 100%;
+}
+
+.main{
+    display: flex;
+}
+.colonne {
+    background-color: lightgrey;
+    padding: 100px;
+    margin-top: 10px;
+}
+.colonne p {color: lime;
+}
+.footer { 
+    display: flex;
+    list-style: none;
+    background-color: black;
+    padding: 10px;
+    margin: 0px;
+}
+.footer li a {
+    padding: 15px;
+    color: white;
+    font-size: 25px;
+}
+.button input {
+    color: white;
+    background-color: red;
+    margin-bottom: 10px;
+}
+.button input:hover {
+    background-color: white;
+    color: red;
+}
+.tableau {color: black;
+    font-size: 20px;
+}
+.tab {
+    width: 100%;
+    align-content: center;
+    font-size: 15px;
+}
+@media screen and (max-width:768px)
+ {
+ .logo .text-logo {
+    
+     right: 0px;
+} 
+ .nav a {
+     font-size: 15px;
+}
+.colonne { display: none;
+}
+.footer li a {font-size: 15px;
+ }
+ }

@@ -1,0 +1,45 @@
+p {
+    color: black;
+    background: yellow;
+}
+#important h1
+{
+    color: white; 
+background: purple;
+}
+
+h1
+{
+    background: rgb(160, 3, 134);
+    color: snow;
+    font-family: 'Times New Roman', Times, serif;
+}
+#important h2
+{ 
+    background: blue;
+color: white;
+}
+#important h3
+{
+     background: violet;
+color: teal;
+}
+
+h4
+{color: orangered;}
+#important p
+{ 
+    background-color: palegreen;
+color: peru;
+}
+body {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+a:link 
+{
+     color: red;
+}
+a:hover
+{
+color: seagreen;
+}
