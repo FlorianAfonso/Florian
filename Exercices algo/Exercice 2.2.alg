@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Algo>
-    <description courant="AFFICHERCALCUL pttc =nb* pht* (1 + ttva)" texte=""/>
+    <description courant="pttc PREND_LA_VALEUR nb* pht* ( 1+ ttva/100 )" texte=""/>
     <extension extnom="inactif"/>
-    <fonction fctcode="" fctetat="inactif"/>
-    <F2 F2para="" F2etat="inactif" F2lignes="" F2defaut=""/>
-    <repere repetat="inactif" repcode="-10#10#-10#10#2#2"/>
-    <param arrondiAuto="vrai" epaisseurLigne="2" nbDecimales="8" totalBoucles="5000000" totalAffichages="1000" epaisseurPoint="2" maxBoucle="500000"/>
+    <fonction fctetat="inactif" fctcode=""/>
+    <F2 F2etat="inactif" F2para="" F2defaut="" F2lignes=""/>
+    <repere repcode="-10#10#-10#10#2#2" repetat="inactif"/>
+    <param nbDecimales="8" arrondiAuto="vrai" totalBoucles="5000000" totalAffichages="1000" maxBoucle="500000" epaisseurLigne="2" epaisseurPoint="2"/>
     <item code="200#declarationfonctions" algoitem="FONCTIONS_UTILISEES"/>
     <item code="100#declarationsvariables" algoitem="VARIABLES">
         <item code="1#NOMBRE#nb" algoitem="nb EST_DU_TYPE NOMBRE"/>
@@ -20,9 +20,9 @@
         <item code="2#nb#pasliste" algoitem="LIRE nb"/>
         <item code="4#Entrez le taux TVA#1" algoitem="AFFICHER &quot;Entrez le taux TVA&quot;"/>
         <item code="2#ttva#pasliste" algoitem="LIRE ttva"/>
-        <item code="20#pttc =nb* pht* (1 + ttva)#0" algoitem="AFFICHERCALCUL pttc =nb* pht* (1 + ttva)"/>
+        <item code="5#pttc#nb* pht* ( 1+ ttva/100 )#pasliste" algoitem="pttc PREND_LA_VALEUR nb* pht* ( 1+ ttva/100 )"/>
         <item code="4#Le prix toute taxe est :#1" algoitem="AFFICHER &quot;Le prix toute taxe est :&quot;"/>
-        <item code="2#pttc#pasliste" algoitem="LIRE pttc"/>
+        <item code="3#pttc#1#pasliste" algoitem="AFFICHER pttc"/>
     </item>
     <item code="102#finalgo" algoitem="FIN_ALGORITHME"/>
 </Algo>
