@@ -29,3 +29,4 @@ switch (operateur)
 }
  
      document.write(resultat);
+     console.log(resultat);
