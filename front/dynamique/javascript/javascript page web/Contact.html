@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="contact_CSS.css">
+    <title>Contact</title>
+</head>
+<body>
+    <form action="http://bienvu.net/script.php" method="post">
+        <h1>Vos coordonnées :</h1>
+
+        <div class="legend">
+            <legend>* Ces zones sont obligatoires pour envoyer le formulaire</legend>
+        </div>
+            <br>
+        
+            <label for="name">Société :</label>
+            <input type="text" id="Societe" name="user_société"<p> *</p>
+    
+        <br>
+        
+        <label for="name">Personne à contacter :</label>
+        <input type="text" id="PaC" name="user_PaC"<p> *</p>
+
+        <br>
+
+        <label>Adresse de l'entreprise :</label> 
+        <input type="text" id="adress" name="user_adress"<p> *</p>
+
+        <br><br>
+
+        <label for="cp">Code postale :</label>
+        <input type="text" id="cp" name="user_cp"<p> *</p>
+            
+        <br>
+
+        <label for="ville">Ville :</label>
+        <input type="text" id="ville" name="user_ville"<p> *</p>
+        
+        <br>
+ 
+        <label for="mail">Email :</label>
+        <input type="text" id="mail" name="user_mail"<p> *</p>
+
+        <br>
+
+        <label for="mail">Téléphone :</label>
+        <input type="text" id="Tel" name="user_tel"<p> *</p>
+
+        <br>
+        
+
+        <label for="demande">Sélectionnez l'environnement technique du projet :</label>
+        <select id="demande"> 
+            <option value="Choisissez" selected>Choisissez</option>
+            <option value="Access">Access</option>
+            <option value="Java">Java</option>
+            <option value="Delphi">Delphi</option>
+            <option value="Windev">Windev</option>
+            <option value="Visual Basic">Visual Basic</option>
+            <option value="Power Builder">Power Builder</option>
+            <option value="Internet">Internet</option>
+            <option value="Intranet">Intranet</option>
+            <option value="Windows NT">Windows NT</option>
+            <option value="Unix">Unix</option>
+            <option value="SQL Server">SQL Server</option>
+            <option value="Oracle">Oracle</option>
+            <option value="Autres">Autres</option>
+        </select><br><br>  
+            <textarea name="comentaires" rows="7" cols="60"></textarea>
+        <br>
+       
+            <br>
+            <div class="button">
+            <input type="submit" id="envoyer" value="Envoyer">
+            <input type="reset" value="Effacer">
+        </div>
+    </form>
+    <script src="../javascript page web/contact_JS.js"></script>
+</body>
+</html>
