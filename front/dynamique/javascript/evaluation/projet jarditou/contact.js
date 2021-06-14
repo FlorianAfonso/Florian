@@ -11,27 +11,29 @@ console.log(e.target);
 
 if(champ_cp.value.length != 5 || isNaN(champ_cp.value)){
     alert("Veuillez entrez un code postale 5 chiffres s.v.p.")
-}else if(!form_OK){
-    e.preventDefault();
+    form_OK = false;
 }
 
-if(champ_nom = ""){
+if(champ_nom.value == ""){
     alert("Veuillez renseigner votre Nom s.v.p.");
-}else if(!form_OK){
-    e.preventDefault();
+    form_OK = false;
+    
 }
 
 if(champ_prenom = ""){
     alert("Veuillez renseigner votre Prénom s.v.p.");
-}else if(!form_OK){
-    e.preventDefault();
+    form_OK = false;
 }
 
 if( !champ_email.value.includes("@")){
     alert("Veuillez renseigner une adresse E-mail valide s.v.p.");
-    e.preventDefault();
+    form_OK = false;
+    
 }
 
+if(!form_OK){
+    e.preventDefault();
+}
 })
 
 function valider (event) {
@@ -39,3 +41,4 @@ function valider (event) {
 }
 
 form_inscription.addEventListener('submit', valider)
+
