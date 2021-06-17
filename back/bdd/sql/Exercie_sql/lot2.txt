@@ -2,4 +2,8 @@
 
 2.Afficher la liste des chambres et leur hôtel : SELECT hot_nom, hot_ville, hot_categorie, cha_numero FROM hotel, chambre 
 
-3.Afficher la liste des chambres de plus d'une place dans des hôtels situés sur la ville de Bretou
+3.Afficher la liste des chambres de plus d'une place dans des hôtels situés sur la ville de Bretou : 
+  
+  SELECT hot_nom, hot_ville, hot_categorie, cha_numero, cha_capacite FROM hotel, chambre WHERE hot_ville LIKE 'Bretou' AND cha_capacite >1 
+  
+4.Afficher la liste des réservations avec le nom des clients : 
