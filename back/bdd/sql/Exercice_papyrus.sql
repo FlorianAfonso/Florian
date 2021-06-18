@@ -1,8 +1,12 @@
 
 
 1 - "Quelles sont les commandes du fournisseur 09120?"
+SELECT numfou, numcom FROM entcom 
+WHERE numfou = 9120
 
 2 - "Afficher le code des fournisseurs pour lesquels des commandes ont été passées."
+SELECT numfou FROM vente 
+WHERE delliv > 0 
 
 3 - "Afficher le nombre de commandes fournisseurs passées, et le nombre de fournisseur concernés."
 

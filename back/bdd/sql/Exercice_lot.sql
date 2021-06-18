@@ -78,7 +78,14 @@ FROM chambre
 WHERE cha_capacite>1
 
 16 - "Afficher la liste des hôtels pour lesquels Mr Squire a effectué une réservation"
-SELECT SUM(res_cli_id =6) FROM reservation
+SELECT DISTINCT hot_nom FROM reservation
+JOIN client
+on res_cli_id = cli_id
+Join chambre 
+on res_cha_id = cha_id
+join hotel
+on cha_hot_id = hot_id
+where cli_nom = 'squire'
 
 17 - "Afficher la durée moyenne des réservations par station"
 SELECT AVG(DATEDIFF(res_date_fin, res_date_debut)) FROM reservation
