@@ -1,4 +1,4 @@
--- Exercice la base :
+Exercice "la base" :
 
 -- -- DROP DATABASE if EXISTS Hotel;
 -- -- CREATE DATABASE Hotel;
@@ -57,7 +57,7 @@
 
 
 
--- Exercice Créez 3 utilisateurs + attribution des droits : 
+Exercice "Créez 3 utilisateurs" + "attribution des droits" : 
 
 -- -- CREATE USER 'util1'@'%' IDENTIFIED BY 'azerty1';
 -- -- CREATE USER 'util2'@'%' IDENTIFIED BY 'azerty2';
@@ -75,4 +75,5 @@
 -- -- ON hotel.station
 -- -- TO 'util3'@'%'
 -- -- IDENTIFIED BY 'azerty3';
+
 
