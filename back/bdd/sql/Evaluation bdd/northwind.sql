@@ -30,5 +30,24 @@ GROUP BY CompanyName
 
 6 - Liste des pays dont les clients ont passé commande de produit fournis par «Exotic Liquids»:
 
-SELECT ShipCountry AS 'Pays' 
-FROM northwind.orders JOIN northwind.customers ON orders.OrderID=customers.CustomerID
+7 - Montant des ventes de 1997 : 
+
+SELECT SUM(UnitPrice*Quantity) AS 'Montant Ventes 97' 
+FROM northwind.order_details
+JOIN northwind.orders ON order_details.OrderID = orders.OrderID
+WHERE OrderDate BETWEEN ('1997-01-01 00:00:00') AND ('1997-12-31 00:00:00')
+
+8 - Montant des ventes de 1997 mois par mois : 
+
+SELECT MONTH(OrderDate) AS 'Mois 97', SUM(UnitPrice*Quantity) AS 'Montant Ventes'
+FROM northwind.order_details
+JOIN northwind.orders ON orders.OrderID = order_details.OrderID
+WHERE YEAR(OrderDate) = '1997'
+GROUP BY MONTH(OrderDate)
+ORDER BY MONTH(OrderDate) ASC
+
+9 - Depuis quelle date le client «Du monde entier» n’a plus commandé ?
+
+SELECT MAX(OrderDate) AS 'Date de dernière commande'
+FROM northwind.orders
+WHERE CustomerID = 'DUMON'
