@@ -1,34 +1,37 @@
-DROP DATABASE IF EXIST MySQL;
-CREATE DATABASE MySQL;
-USE MySQL;
+DROP DATABASE IF EXISTS base_exo1;
 
-CREATE TABLE Client (
-    cli_num INT NOT KEY ,
-    cli_nom VARCHAR (50) NOT NULL ,
-    cli_adresse VARCHAR (50) NOT NULL , 
-    cli_tel VARCHAR (30) NOT NULL 
-    , CONSTRAINT Client_PK PRIMARY KEY (cli_num)
-)
+CREATE DATABASE base_exo1;
 
-CREATE TABLE Commande (
-    com_num INT NOT NULL ,
-    cli_num INT NOT NULL ,
-    com_date DATE NOT NULL ,
-    com_obs VARCHAR (50) NOT NULL
-    , CONSTRAINT Commande_PK PRIMARY KEY (com_num)
-    , CONSTRAINT Commande_Client_FK FOREIGN KEYS (cli_num) REFERENCES Commande()
-)
+USE base_exo1;
 
+CREATE TABLE client (
+    cli_num INT PRIMARY KEY,
+    cli_nom VARCHAR(50),
+    cli_adresse VARCHAR(50),
+    cli_tel VARCHAR(30)
+    );
+    
+CREATE TABLE commande (
+    com_num INT PRIMARY KEY,
+    cli_num INT,
+    com_date DATETIME,
+    com_obs VARCHAR(50),
+    FOREIGN KEY (cli_num) REFERENCES client(cli_num)
+    );
+    
+CREATE TABLE produit (
+    pro_num INT PRIMARY KEY,
+    pro_libelle VARCHAR(50),
+    pro_description VARCHAR(50)
+    );
+    
 CREATE TABLE est_compose (
-    com_num INT NOT NULL ,
-    pro_num INT NOT NULL ,
-    est_qte INT NOT NULL 
-    , CONSTRAINT est_compose_PK PRIMARY KEY (com_num ,pro_num)
-)
+    com_num INT,
+    pro_num INT,
+    est_qte INT,
+    PRIMARY KEY (com_num, pro_num),
+    FOREIGN KEY (com_num) REFERENCES commande(com_num),
+    FOREIGN KEY (pro_num) REFERENCES produit(pro_num)
+    );
 
-CREATE TABLE Produit (
-    pro_num INT NOT NULL ,
-    pro_libelle VARCHAR (50) NOT NULL ,
-    pro_description VARCHAR (50)
-    , CONSTRAINT Produit_PK PRIMARY KEY (pro_num)
-)
+CREATE INDEX index_be1 ON client (cli_num);
