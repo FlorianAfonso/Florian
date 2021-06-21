@@ -63,7 +63,7 @@ JOIN papyrus.produit
 ON codart = codart
 WHERE obscom="Commande urgente"
 
-12 - "Coder de 2manières différentes la requête suivante:Lister lenom desfournisseurs susceptibles de livrer au moins un article"
+12 - "Coder de 2 manières différentes la requête suivante:Lister le nom des fournisseurs susceptibles de livrer au moins un article"
 SELECT nomfou
 FROM papyrus.fournis
 WHERE satisf > 0
@@ -71,14 +71,10 @@ WHERE satisf > 0
 SELECT numfou FROM papyrus.vente
 WHERE numfou = 8700 AND codart = 'B001'
 
-13 - "Coder de 2 manières différentes la requête suivanteLister les commandes (Numéro et date) dont le fournisseur est celui de la commande 70210"
+13 - "Coder de 2 manières différentes la requête suivante Lister les commandes (Numéro et date) dont le fournisseur est celui de la commande 70210"
 SELECT numcom, derliv
 FROM papyrus.ligcom
 WHERE numcom = 70210
-
-SELECT numcom, derliv
-FROM papyrus.ligcom
-WHERE numcom LIKE 70210
 
 14 - "Dans les articles susceptibles d’être vendus, lister les articles moins chers (basés sur Prix1) que le moins cher des rubans (article dont le premier caractère commence par R). On affichera le libellé de l’article et prix1"
 SELECT libart, prix1
@@ -86,6 +82,7 @@ FROM papyrus.produit, papyrus.vente
 WHERE prix1 < 120
 
 15 - "Editer la liste des fournisseurs susceptibles de livrer les produits dont le stock est inférieur ou égal à 150 % du stock d'alerte. La liste est triée par produit puis fournisseur"
+
 
 16 - "Éditer la liste des fournisseurs susceptibles de livrer les produit dont le stock est inférieur ou égal à 150 % du stock d'alerte et un délai de livraison d'au plus 30 jours. La liste est triée par fournisseur puis produit"
 
