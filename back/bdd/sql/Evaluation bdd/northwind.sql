@@ -28,7 +28,17 @@ GROUP BY CompanyName
 
 5 - Liste des clients ayant un chiffre daffaires > 30.000 :
 
+SELECT CompanyName AS 'Client', SUM(UnitPrice * Quantity) AS 'CA'
+FROM northwind.customers
+JOIN orders ON customers.CustomerID = orders.CustomerID 
+JOIN order_details ON orders.OrderID = order_details.OrderID
+GROUP BY CompanyName
+HAVING SUM(UnitPrice * Quantity) > 30000
+ORDER BY SUM(UnitPrice * Quantity) DESC
+
 6 - Liste des pays dont les clients ont passé commande de produit fournis par «Exotic Liquids»:
+
+
 
 7 - Montant des ventes de 1997 : 
 
@@ -51,3 +61,7 @@ ORDER BY MONTH(OrderDate) ASC
 SELECT MAX(OrderDate) AS 'Date de dernière commande'
 FROM northwind.orders
 WHERE CustomerID = 'DUMON'
+
+10 - Quel est le délai moyen de livraison en jours ? 
+
+SELECT ROUND(AVG(DATEDIFF (ShippedDate, OrderDate))) FROM northwind.orders
