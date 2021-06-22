@@ -38,7 +38,13 @@ ORDER BY SUM(UnitPrice * Quantity) DESC
 
 6 - Liste des pays dont les clients ont passé commande de produit fournis par «Exotic Liquids»:
 
-
+SELECT ShipCountry AS 'Pays'
+FROM northwind.orders
+JOIN northwind.order_details ON northwind.order_details.OrderID = northwind.orders.OrderID 
+JOIN northwind.products ON northwind.products.ProductID = northwind.order_details.ProductID
+JOIN northwind.suppliers ON northwind.suppliers.SupplierID = northwind.products.SupplierID
+WHERE northwind.suppliers.CompanyName = 'Exotic Liquids'
+GROUP BY ShipCountry
 
 7 - Montant des ventes de 1997 : 
 

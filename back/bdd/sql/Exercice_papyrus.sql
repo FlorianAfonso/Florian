@@ -83,11 +83,52 @@ WHERE prix1 < 120
 
 15 - "Editer la liste des fournisseurs susceptibles de livrer les produits dont le stock est inférieur ou égal à 150 % du stock d'alerte. La liste est triée par produit puis fournisseur"
 
+SELECT libart, nomfou from produit
+JOIN vente
+ON produit.codart = vente.codart
+JOIN fournis
+on fournis.numfou = vente.numfou
+WHERE stkphy < (1.5*stkale)
+ORDER BY libart, nomfou
 
 16 - "Éditer la liste des fournisseurs susceptibles de livrer les produit dont le stock est inférieur ou égal à 150 % du stock d'alerte et un délai de livraison d'au plus 30 jours. La liste est triée par fournisseur puis produit"
 
+SELECT libart, nomfou from produit
+JOIN vente
+ON produit.codart = vente.codart
+JOIN fournis
+ON fournis.numfou = vente.numfou
+WHERE stkphy < (1.5*stkale) and delliv <= 30
+ORDER BY libart, nomfou
+
+
 17 - "Avec le même type de sélection que ci-dessus, sortir un total des stocks par fournisseur trié par total décroissant"
+
+select nomfou, SUM(stkphy) as 'TOTAL STOCK' from produit
+JOIN vente
+ON produit.codart = vente.codart
+JOIN fournis
+on fournis.numfou = vente.numfou
+GROUP BY nomfou
+ORDER BY SUM(stkphy)
 
 18 - "En fin d'année, sortir la liste des produits dontla quantité réellement commandée dépasse 90% de la quantité annuelleprévue."
 
+SELECT produit.codart, SUM(qtecde) AS 'quantitée commandée', qteann from produit
+JOIN ligcom
+ON ligcom.codart = produit.codart
+GROUP BY produit.codart 
+HAVING SUM(qtecde) > 0.9*qteann
+
+
 19 - "Calculer le chiffre d'affaire par fournisseur pour l'année 93 sachant que les prix indiqués sont hors taxes et que le taux de TVA est 20%."
+
+SELECT nomfou, SUM(qteliv*priuni*1.2) FROM ligcom
+JOIN produit
+ON ligcom.codart = produit.codart
+JOIN vente
+ON produit.codart = vente.codart
+JOIN fournis
+ON fournis.numfou = vente.numfou
+WHERE derliv >= '2007-01-01' AND derliv < '2008-01-01'
+GROUP BY nomfou
