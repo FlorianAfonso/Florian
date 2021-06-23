@@ -1,42 +1,23 @@
 <html>
-<body> 	
-   <?php
-class Calculator {
-    private $_val1 , $_val2;
+<body>
+    <?php
+function calculator($val1,$val2,$operateur){
 
-    public function __construct($val1, $val2){
-        $this->_val1 = $val1;
-        $this->_val2 = $val2;
-    }
+switch($operateur){
+    case "+":
+        return $val1+$val2 ;
+    case "-":
+        return $val1-$val2 ; 
+    case "":
+        return $val1$val2 ; 
+    case "/":
+        return $val1/$val2 ;
 
-    public function add(){
-        return $this->_val1 + $this->_val2;
-    }
-
-    public function subtract(){
-        return $this->_val1 - $this->_val2;
-    }
-
-    public function multiply (){
-        return $this->_val1 * $this->_val2;
-    }
-
-    public function divide () {
-        return $this->_val1 / $this->_val2;
-    }
 }
+};
 
-$calc = new Calculator(3,4);
-echo "<p>3 + 4 = ".$calc->add(). "</p>";
-
-$calc = new Calculator (15,12);
-echo "<p>15 - 12 = ".$calc->subtract(). "</p>";
-
-$calc = new Calculator (20,2);
-echo "<p> 20 * 2 = ".$calc->multiply(). "</p>";
-
-$calc = new Calculator (20,2);
-echo "<p> 20 /2 = ".$calc ->divide(). "</p>";
-    ?> 
+echo calculator(3,2,"/");
+ 
+    ?>
 </body>
 </html>
