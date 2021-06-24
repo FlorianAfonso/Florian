@@ -1,23 +1,28 @@
 <html>
 <body>
-    <?php
-function calculator($val1,$val2,$operateur){
-
-switch($operateur){
-    case "+":
-        return $val1+$val2 ;
-    case "-":
-        return $val1-$val2 ; 
-    case "":
-        return $val1$val2 ; 
-    case "/":
-        return $val1/$val2 ;
-
+  <?php
+$resultat = 0 ;
+function calculator ($nbr1, $operateur, $nbr2)
+{
+    if ($operateur = "+")
+    {
+        $resultat = $nbr1 + $nbr2 ;
+    }
+    else if ($operateur = "-")
+    {
+        $resultat = $nbr1 - $nbr2 ;
+    }
+    else if ($operateur = "*")
+    {
+        $resultat = $nbr1 * $nbr2 ;
+    }
+    else if ($operateur = "/")
+    {
+        $resultat = $nbr1 / $nbr2 ;
+    }
+    return $resultat ;
 }
-};
-
-echo calculator(3,2,"/");
- 
+echo calculator (4, "*", 4) ;
     ?>
 </body>
 </html>
