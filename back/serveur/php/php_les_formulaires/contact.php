@@ -19,16 +19,16 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                <ul class="navbar-nav">
-                    <ul class="navbar-brand" href="#">JardiTou.com</ul>
+            <ul class="navbar-nav">
+                    <a class="navbar-brand" href="#">JardiTou.com</a>
                     <li class="nav-item">
-                        <a class="nav-link" href="../projet jarditou/index.html">Accueil</a>
+                        <a class="nav-link active" href="index.php">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../projet jarditou/tableau.html">Tableau</a>
+                        <a class="nav-link" href="tableau.php">Tableau</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="../projet jarditou/contact.html">Formulaire</a>
+                        <a class="nav-link" href="contact.php">Formulaire</a>
                     </li>
                 </ul>
             </div>
