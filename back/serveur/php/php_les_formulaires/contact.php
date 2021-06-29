@@ -47,7 +47,7 @@
 
 
             <h1>Contacts</h1>
-            <form class="w-100 p-2" action="../php_les_formulaires/script.php" method="GET" onSubmit="return verif(this)">
+            <form class="w-100 p-2" action="../php_les_formulaires/script.php" method="POST" onSubmit="return verif(this)">
                 <p><span class="text-danger">* Information indispensable</span></p>
                 <fieldset>
                     <legend>Vos coordonnées</legend>
@@ -64,13 +64,13 @@
                     <br>
 
                     <label for="start">Date de naissance<span class="text-danger">* </span>:</label>
-                    <input type="date" id="start" name="trip-start" value="2011-07-22" class="form-control">
+                    <input type="date" id="start" name="trip_start" value="2011-07-22" class="form-control">
                     <br>
                     <label for="cp">Code postale<span class="text-danger">* </span>:</label>
                     <input type="text" id="cp" name="user_cp" class="form-control"> <br>
 
                     <label for="adress">Adresse :</label>
-                    <input type="text" id="adress" name="user_adress" class="form-control"> <br>
+                    <input type="text" id="adress" name="user_address" class="form-control"> <br>
 
                     <label for="ville">Ville :</label>
                     <input type="text" id="ville" name="user_ville" class="form-control"> <br>
@@ -97,7 +97,7 @@
                     <textarea name="comentaires" rows="2" cols="20" class="form-control"></textarea>
                 </fieldset>
                 <br>
-                <input type="checkbox" name="couleur3" value="Vert"><span class="text-danger">* </span>J'accepte le
+                <input type="checkbox" name="validation" value="Vert"><span class="text-danger">* </span>J'accepte le
                 traitement informatique de ce formulaire
                 <br><br>
                 <input type="submit" value="Envoyer" class="form-control">
