@@ -1,0 +1,21 @@
+1. Que signifie le terme NoSQL ?
+
+Le terme « NoSQL » signifie « Not only SQL » mais il s'agît ici d'une interprêtation qui est discutable, elle reste cependant la plus populaire.
+
+2. Pourquoi parle-t-on de "non relationnel" ?
+
+Nous parlons de non relationnel quand il s'agît d'une base de données sous une forme non structurée où les jointures ne sont pas nécéssaires.
+
+3. Comment sont nées les bases NoSQL ? 
+
+Les bases de données NoSQL sont nées du besoin de grandes entreprises comme Google et Facebook de traiter des volumes de données si importants
+qu'ils atteignaient les limites de bases de données relationnelles qui posaient des problèmes d'extensibilité.
+
+4. Y-a-t-il un seul type de base NoSQL ? 
+
+Non, il exsite quatre différents types de bases de données NoSQL : orientées document, clé/valeur, colonnes et enfin orientées graphes.
+
+5. Dans quel cas utiliser une base NoSQL ?
+
+On utilise principalement une base de données NoSQL dans le cas où l'on peut insérer les données de manière fixe à l'avance et quand l'on a besoin
+d'avoir un système qui est facilement implémentable sur plusieurs serveurs (contrairement au SGBDR qui n'est implémentable que sur un seul serveur).

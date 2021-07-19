@@ -1,0 +1,34 @@
+Exercice 6 evaluation 
+
+Backup & sauvegarde : 
+
+Pour commencer j'ai créer un repertoire Backup sur mon disc local C:\
+
+Ensuite depuis l'inviter de commande je suis allez me placer sur le bon repertoire avec la commande suivante : cd C:\laragon\bin\mysql\mysql-5.7.33-winx64\bin
+
+Pour effectuer la sauvegarde j'ai utiliser la commande suivante : mysqldump --user=root --password= --databases gescom_afpa > C:\Backup\backup_gescom_afpa.sql
+
+Description de la commande utiliser : 
+
+Pour savoir : je suis en local, j'ai pas de mot de passe, j'utilise donc --password=. 
+
+Si je devait utiliser un mot de passe j'utiliserais --password=motdepasse --databases... 
+     
+       (--databases doit être remplacer par le nom de votre database pour moi = gescom_afpa.sql )
+
+Ce qui ce trouve aprés le signe " > "  indique le chemin complet du répertoire dans lequel on veut stocker le fichier de sauvegarde et le nom du fichier de sauvegarde.
+
+Restauration de la base : 
+
+Pour restauré la base de donné j'ai utiliser la commande suivante : mysql --user=root --password= < C:\Backup\backup_gescom_afpa.sql
+
+Remarque le chevron est vers la gauche a la place d'être vers la droite . Ensuite je me suis connecter a la base de donnée pour tester mon script requete voir si tout fonctionner correctement .
+
+
+
+
+
+
+
+
+
