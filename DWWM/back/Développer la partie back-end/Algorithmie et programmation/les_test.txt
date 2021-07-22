@@ -1,0 +1,87 @@
+Les tests : 
+
+EXERCICE 3.1 : 
+
+Variable n en Entier
+Début
+Ecrire "Entrez un nombre : "
+Lire n
+Si n > 0 Alors
+  Ecrire "Ce nombre est positif”
+Sinon
+  Ecrire "Ce nombre est négatif"
+Finsi
+Fin
+
+EXERCICE 3.2 : 
+
+Variables m, n en Entier
+Début
+Ecrire "Entrez deux nombres : "
+Lire m, n
+Si (m > 0 ET n > 0) OU (m < 0 ET n < 0) Alors
+  Ecrire "Leur produit est positif"
+Sinon
+  Ecrire "Leur produit est négatif"
+Finsi
+Fin
+
+EXERCICE 3.3 : 
+
+Variables a, b, c en Caractère
+Début
+Ecrire "Entrez successivement trois noms : "
+Lire a, b, c
+Si a < b ET b < c Alors
+  Ecrire "Ces noms sont classés alphabétiquement"
+Sinon
+  Ecrire "Ces noms ne sont pas classés"
+Finsi
+Fin
+
+EXERCICE 3.4 : 
+
+Variable n en Entier
+Début
+Ecrire "Entrez un nombre : "
+Lire n
+Si n < 0 Alors
+  Ecrire "Ce nombre est négatif"
+SinonSi n = 0 Alors
+  Ecrire "Ce nombre est nul"
+Sinon
+  Ecrire "Ce nombre est positif"
+Finsi
+Fin
+
+EXERCICE 3.5 : 
+
+Variables m, n en Entier
+Début
+Ecrire "Entrez deux nombres : "
+Lire m, n
+Si m = 0 OU n = 0 Alors
+  Ecrire "Le produit est nul"
+SinonSi (m < 0 ET n < 0) OU (m > 0 ET n > 0) Alors
+  Ecrire "Le produit est positif"
+Sinon
+  Ecrire "Le produit est négatif"
+Finsi
+Fin
+
+EXERCICE 3.6 : 
+
+Variable age en Entier
+Début
+Ecrire "Entrez l’âge de l’enfant : "
+Lire age
+Si age >= 12 Alors
+  Ecrire "Catégorie Cadet"
+SinonSi age >= 10 Alors
+  Ecrire "Catégorie Minime"
+SinonSi age >= 8 Alors
+  Ecrire "Catégorie Pupille"
+SinonSi age >= 6 Alors
+  Ecrire "Catégorie Poussin"
+Finsi
+Fin

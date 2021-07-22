@@ -1,0 +1,41 @@
+Lecture - ecriture : 
+
+EXERCICE 2.1 :
+
+On verra apparaître à l’écran 231, puis 462 (qui vaut 231 * 2)
+
+EXERCICE 2.2 :
+
+Variables nb, carr en Entier
+Début
+Ecrire "Entrez un nombre :"
+Lire nb
+carr ← nb * nb
+Ecrire "Son carré est : ", carr
+Fin
+
+EXERCICE 2.3 : 
+
+Variable prenom en Caractere
+Début
+Ecrire "Quel est votre prenom ?"
+Lire Prenom
+Ecrire "Bonjour ", Prenom, " !"
+Fin
+
+EXERCICE 2.4 :
+
+Variables nb, pht, ttva, pttc en Numérique
+Début
+Ecrire "Entrez le prix hors taxes :"
+Lire pht
+Ecrire "Entrez le nombre d’articles :"
+Lire nb
+Ecrire "Entrez le taux de TVA :"
+Lire ttva
+pttc ← nb * pht * (1 + ttva)
+Ecrire "Le prix toutes taxes est : ", pttc
+Fin
+
+
+

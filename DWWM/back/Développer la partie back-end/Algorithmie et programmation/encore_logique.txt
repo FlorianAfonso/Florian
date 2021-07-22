@@ -1,0 +1,160 @@
+Encore un peu de logique : 
+
+EXERCICE 4.1 : 
+
+Si Tutu <= Toto + 4 ET Tata <> "OK" Alors
+  Tutu ← Tutu - 1
+Sinon
+  Tutu ← Tutu + 1
+Finsi
+
+EXERCICE 4.2 :
+
+Variables h, m en Numérique
+Début
+Ecrire "Entrez les heures, puis les minutes : "
+Lire h, m
+m ← m + 1
+Si m = 60 Alors
+  m ← 0
+  h ← h + 1
+FinSi
+Si h = 24 Alors
+  h ← 0
+FinSi
+Ecrire "Dans une minute il sera ", h, "heure(s) ", m, "minute(s)"
+Fin
+
+EXERCICE 4.3
+
+Variables h, m, s en Numérique
+Début
+Ecrire "Entrez les heures, puis les minutes, puis les secondes : "
+Lire h, m, s
+s ← s + 1
+Si s = 60 Alors
+  s ← 0
+  m ← m + 1
+FinSi
+Si m = 60 Alors
+  m ← 0
+  h ← h + 1
+FinSi
+Si h = 24 Alors
+  h ← 0
+FinSi
+Ecrire "Dans une seconde il sera ", h, "h", m, "m et ", s, "s"
+Fin
+
+EXERCICE 4.4 : 
+
+Variables n, p en Numérique
+Début
+Ecrire "Nombre de photocopies : "
+Lire n
+Si n <= 10 Alors
+  p ← n * 0,1
+SinonSi n <= 30 Alors
+  p ← 10 * 0,1 + (n – 10) * 0,09
+Sinon
+  p ← 10 * 0,1 + 20 * 0,09 + (n – 30) * 0,08
+FinSi
+Ecrire "Le prix total est: ", p
+Fin
+
+EXERCICE 4.5 : 
+
+Variable sex en Caractère
+Variable age en Numérique
+Variables C1, C2 en Booléen
+Début
+Ecrire "Entrez le sexe (M/F) : "
+Lire sex
+Ecrire "Entrez l’âge: "
+Lire age
+C1 ← sex = "M" ET age > 20
+C2 ← sex = "F" ET (age > 18 ET age < 35)
+Si C1 ou C2 Alors
+  Ecrire "Imposable"
+Sinon
+  Ecrire "Non Imposable"
+FinSi
+Fin
+
+EXERCICE 4.6 : 
+
+Variables A, B, C, D en Numérique
+Variables C1, C2, C3, C4 en Booléen
+Début
+Ecrire "Entrez les scores des quatre prétendants :"
+Lire A, B, C, D
+C1 ← A > 50
+C2 ← B > 50 ou C > 50 ou D > 50
+C3 ← A >= B et A >= C et A >= D
+C4 ← A >= 12,5
+Si C1 Alors
+  Ecrire “Elu au premier tour"
+Sinonsi C2 ou Non(C4) Alors
+  Ecrire “Battu, éliminé, sorti !!!”
+SinonSi C3 Alors
+  Ecrire "Ballotage favorable"
+Sinon
+  Ecrire "Ballotage défavorable"
+FinSi
+Fin
+
+EXERCICE 4.7 :
+
+Variables age, perm, acc, assur en Numérique
+Variables C1, C2, C3 en Booléen
+Variable situ en Caractère
+Début
+Ecrire "Entrez l’âge: "
+Lire age
+Ecrire "Entrez le nombre d'années de permis: "
+Lire perm
+Ecrire "Entrez le nombre d'accidents: "
+Lire acc
+Ecrire "Entrez le nombre d'années d'assurance: "
+Lire assur
+C1 ← age >= 25
+C2 ← perm >= 2
+C3 ← assur > 5
+Si Non(C1) et Non(C2) Alors
+  Si acc = 0 Alors
+    situ ← "Rouge"
+  Sinon
+    situ ← "Refusé"
+  FinSi
+Sinonsi ((Non(C1) et C2) ou (C1 et Non(C2)) Alors
+  Si acc = 0 Alors
+    situ ← "Orange"
+  SinonSi acc = 1 Alors
+    situ ← "Rouge"
+  Sinon
+    situ ← "Refusé"
+  FinSi
+Sinon
+  Si acc = 0 Alors
+    situ ← "Vert"
+  SinonSi acc = 1 Alors
+    situ ← "Orange"
+  SinonSi acc = 2 Alors
+    situ ← "Rouge"
+  Sinon
+    situ ← "Refusé"
+  FinSi
+FinSi
+Si C3 Alors
+  Si situ = "Rouge" Alors
+    situ ← "Orange"
+  SinonSi situ = "Orange" Alors
+    situ ← "Vert"
+  SinonSi situ = "Vert" Alors
+    situ ← "Bleu"
+  FinSi
+FinSi
+Ecrire "Votre situation : ", situ
+Fin
+
+
