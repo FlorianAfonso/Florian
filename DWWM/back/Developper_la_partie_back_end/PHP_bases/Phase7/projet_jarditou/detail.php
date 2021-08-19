@@ -53,9 +53,12 @@
         </nav>
         <img class="img-fluid img-responsive w-100" src="../jarditou_photos/promotion.jpg" alt="Image">
    <fieldset>
-
+<br>
    <div class="form-group">
-    <label for="id">ID</label><br>
+   <img src="../jarditou_photos/<?php echo "$produit->pro_id.$produit->pro_photo"; ?>" class="img-fluid img-thumbnail rounded mx-auto d-block col-3" alt="<?php echo $produit->pro_libelle; ?>" title="<?php echo $produit->pro_libelle; ?>">
+    
+   <form method="post" action="modif.php?pro_id=<?php echo $pro_id ; ?>"> 
+   <label for="id">ID</label><br>
     <input type="text" class="form-control" id="id" value=" <?php echo $produit->pro_id; ?>" readonly>
   </div>
 
@@ -82,9 +85,9 @@
 
 <br>
 
-  <div class="form-group">
-    <label for="id">Description</label><br>
-    <input type="text" class="form-control" id="id" value=" <?php echo $produit->pro_description; ?>" readonly>
+<div class="form-group">
+    <label for="description">Description</label>
+    <textarea class="form-control" id="description" rows="3" readonly><?php echo $produit->pro_description; ?></textarea>
   </div>
 
 <br>
@@ -117,12 +120,19 @@
 <br><br>
 
 <label for="start">Date d'ajout :</label>
-<input type="date" id="start" name="trip-start" value="2011-07-22" class="form-control">
+<input type="date" id="start" name="trip-start" value="2011-07-22">
 
 <br><br>
 
 <label for="start">Date de modification :</label>
-<input type="date" id="start" name="trip-start" value="2011-07-22" class="form-control"> 
+<input type="date" id="start" name="trip-start" value="2011-07-22"> 
+
+<br><br>
+
+<input type="submit" value="Envoyer" class="btn btn-dark">  <a class="btn btn-dark" href="liste.php">Retour</a> <input type="submit" value="Modifier" class="btn btn-dark">
+</form>
+
+<br><br>
 
 </fieldset>
 <footer class="navbar navbar-expand-sm navbar-dark bg-dark">
