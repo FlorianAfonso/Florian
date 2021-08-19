@@ -34,13 +34,13 @@
                 <ul class="navbar-nav">
                     <ul class="navbar-brand" href="#">JardiTou.com</ul>
                     <li class="nav-item">
-                        <a class="nav-link" href="../projet_jarditou/index.html">Accueil</a>
+                        <a class="nav-link" href="../projet jarditou/index.html">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="../projet_jarditou/liste.php">Tableau</a>
+                        <a class="nav-link active" href="liste.php">Tableau</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../projet_jarditou/contact.html">Formulaire</a>
+                        <a class="nav-link" href="../projet jarditou/contact.html">Formulaire</a>
                     </li>
                 </ul>
             </div>
