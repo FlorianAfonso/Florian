@@ -7,18 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Jarditou</title>
-     <?php   
-     require "connexion_bdd.php"; // Inclusion de notre bibliothèque de fonctions
 
-     $db = connexionBase(); // Appel de la fonction de connexion
-     $pro_id = $_GET["pro_id"];
-   $requete = "SELECT * FROM produits WHERE pro_id=".$pro_id; /* ajouté un pro_id valable pour que ca fonctionne */
+    <?php
+    $pro_id = $_GET["pro_id"] ;
+    require "connexion_bdd.php" ;
+    $db = connexionBase() ;
+    $requete = "SELECT * FROM produits, categories WHERE pro_id = " . $pro_id . " AND pro_cat_id = cat_id" ;
+    $resultat = $db -> query($requete) ;
+    $produit = $resultat->fetch(PDO::FETCH_OBJ) ;
+    $resultat -> closeCursor() ;
+    $categorie = $db->prepare("SELECT cat_nom, cat_id  FROM categories ORDER BY cat_nom");
+    $categorie -> execute() ;
+  ?>
 
-    $result = $db->query($requete);
-
-    // Renvoi de l'enregistrement sous forme d'un objet
-    $produit = $result->fetch(PDO::FETCH_OBJ);
-   ?>
    </head>
    <body> 
    <div class="container">
@@ -52,86 +53,121 @@
             </nav>
         </nav>
         <img class="img-fluid img-responsive w-100" src="../jarditou_photos/promotion.jpg" alt="Image">
-   <fieldset>
-<br>
-   <div class="form-group">
+<br><br>
+
+<form class="form-group" action="verif_modif.php" method="POST">
    <img src="../jarditou_photos/<?php echo "$produit->pro_id.$produit->pro_photo"; ?>" class="img-fluid img-thumbnail rounded mx-auto d-block col-3" alt="<?php echo $produit->pro_libelle; ?>" title="<?php echo $produit->pro_libelle; ?>">
-    <label for="id">ID</label><br>
-    <input type="text" class="form-control" id="id" value=" <?php echo $produit->pro_id; ?>" readonly>
+   <div class="form-group"> 
+   <label for="id">ID</label><br>
+    <input type="text" class="form-control" id="id" name="id" value=" <?php echo $produit->pro_id; ?>" readonly>
   </div>
 
 <br>
 
   <div class="form-group">
-    <label for="id">Référence</label><br>
-    <input type="text" class="form-control" id="id" value=" <?php echo $produit->pro_ref; ?>">
+  <label for="ref">Référence</label>
+    <input type="text" class="form-control <?php if (isset($_GET['eref'])) { echo 'border border-danger'; } ?>" id="ref" name="ref" value="<?php echo $produit->pro_ref; ?>">
+    <?php if (isset($_GET['eref'])) { echo '<i>La référence n\'a pas été renseignée, comporte des caractères spéciaux, ou comporte trop de caractères (max: 10).</i> <br>'; } ?>
+  </div>
+
+<br>
+
+<div class="form-group">
+    <label for="categorie">Catégorie*</label>
+    <select id="categorie" name="categorie" class="form-control">
+      <?php
+
+        while ($rowsCategorie = $categorie->fetch(PDO::FETCH_OBJ)):
+      ?>
+      <option value="<?php echo $rowsCategorie->cat_id; ?>" <?php if ($rowsCategorie->cat_nom == $produit->cat_nom) { echo 'selected'; } ?>>
+      <?php echo $rowsCategorie->cat_nom; ?>
+      </option>
+      <?php
+        endwhile;
+
+        $categorie->closeCursor(); 
+     ?>
+    </select>
   </div>
 
 <br>
 
   <div class="form-group">
-    <label for="id">Catégorie</label><br>
-    <input type="text" class="form-control" id="id" value=" <?php echo $produit->pro_cat_id; ?>" >
-  </div>
-
-<br>
-
-  <div class="form-group">
-    <label for="id">Libellé</label><br>
-    <input type="text" class="form-control" id="id" value=" <?php echo $produit->pro_libelle; ?>" >
+    <label for="libelle">Libellé</label><br>
+    <input type="text" class="form-control <?php if (isset($_GET['elib'])) { echo 'border border-danger'; } ?>" id="libelle" name="libelle" value="<?php echo $produit->pro_libelle; ?>">
+    <?php if (isset($_GET['elib'])) { echo '<i>Le libellé n\'a pas été renseignée, comporte des caractères spéciaux ou des chiffres ou comporte trop de caractères (max: 200).</i> <br>'; } ?>
   </div>
 
 <br>
 
 <div class="form-group">
     <label for="description">Description</label>
-    <textarea class="form-control" id="description" rows="3" ><?php echo $produit->pro_description; ?></textarea>
+    <textarea rows="3" class="form-control <?php if (isset($_GET['edesc'])) { echo 'border border-danger'; } ?> " name="description" id="description"> <?php echo $produit -> pro_description ;?> </textarea>
+    <?php if (isset($_GET['edesc'])) { echo '<i>La description n\'a pas été renseignée ou comporte trop de caractères (max: 1000).</i> <br>'; } ?>
   </div>
 
 <br>
 
   <div class="form-group">
-    <label for="id">Prix</label><br>
-    <input type="text" class="form-control" id="id" value=" <?php echo $produit->pro_prix; ?>" >
+    <label for="prix">Prix</label><br>
+    <input type="text" class="form-control <?php if (isset($_GET['eprix'])) { echo 'border border-danger'; } ?>" id="prix" name="prix" value="<?php echo $produit->pro_prix; ?>">
+    <?php if (isset($_GET['eprix'])) { echo '<i>Le prix n\'a pas été renseignée, comporte des caractères spéciaux ou des lettres, ou comporte trop de caractères (max: 6 dont 2 chiffres après la virgule).</i> <br>'; } ?>
   </div>
 
 <br>
 
   <div class="form-group">
-    <label for="id">Stock</label><br>
-    <input type="text" class="form-control" id="id" value=" <?php echo $produit->pro_stock; ?>" >
+    <label for="stock">Stock</label><br>
+    <input type="text" class="form-control <?php if (isset($_GET['estock'])) { echo 'border border-danger'; } ?>" id="stock" name="stock" value="<?php echo $produit->pro_stock; ?>">
+    <?php if (isset($_GET['estock'])) { echo '<i>Le stock n\'a pas été renseignée, comporte des caractères spéciaux ou des lettres, ou comporte trop de caractères (max: 11).</i> <br>'; } ?>
   </div>
 
 <br>
 
   <div class="form-group">
-    <label for="id">Couleur</label><br>
-    <input type="text" class="form-control" id="id" value=" <?php echo $produit->pro_couleur; ?>" >
+    <label for="couleur">Couleur</label><br>
+    <input type="text" class="form-control <?php if (isset($_GET['ecolor'])) { echo 'border border-danger'; } ?>" id="couleur" name="couleur" value="<?php echo $produit->pro_couleur; ?>">
+    <?php if (isset($_GET['ecolor'])) { echo '<i>La couleur n\'a pas été renseignée, comporte des caractères spéciaux ou des chiffres ou comporte trop de caractères (max: 30).</i> <br>'; } ?>
   </div>
 
 <br>
 
-<label for="name">Produit bloqué : </label>
-<input type="radio" name="sexe" value="Male"> Oui
-<input type="radio" name="sexe" value="Female"> Non
+<?php if ($produit -> pro_bloque == 1): ?>
+        <div class="form-group">
+        <label for="bloque">Produit bloqué : </label>
+        <input type="radio" name="bloque" value="1" readonly checked > Oui
+        <input type="radio" name="bloque" value="0" readonly > Non <br>
+   </div>
+      <?php else: ?>
+        <div class="form-group">
+        <label for="bloque">Produit bloqué : </label>
+        <input type="radio" name="bloque" value="1" readonly > Oui
+        <input type="radio" name="bloque" value="0" readonly checked > Non <br>
+      </div>
+        <?php endif; ?>
+
+    Date d'ajout : <?php echo $produit -> pro_d_ajout . "<br><br>" ; ?>
+
+    Date de modification :
+    <?php
+      if ($produit -> pro_d_modif == NULL )
+      {
+        echo "Il n'y a pas eu de modification sur ce produit. <br><br> " ;
+      }
+      else
+      {
+        echo $produit -> pro_d_modif . "<br><br>" ;
+      }
+
+    ?>
 
 <br><br>
 
-<label for="start">Date d'ajout :</label>
-<input type="date" id="start" name="trip-start" value="2011-07-22">
+<input type="submit" value="Envoyer" class="btn btn-dark">  <a class="btn btn-dark" href="modif.php?pro_id=<?php echo $pro_id ;?>">Retour</a>
 
 <br><br>
 
-<label for="start">Date de modification :</label>
-<input type="date" id="start" name="trip-start" value="2011-07-22"> 
-
-<br><br>
-
-<input type="submit" value="Envoyer" class="btn btn-dark">  <a class="btn btn-dark" href="liste.php">Retour</a>
-
-<br><br>
-
-</fieldset>
+    </form>
 <footer class="navbar navbar-expand-sm navbar-dark bg-dark">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item"><a class="nav-link" href="#">Mentions légales</a></li>

@@ -54,82 +54,95 @@
         <img class="img-fluid img-responsive w-100" src="../jarditou_photos/promotion.jpg" alt="Image">
    <fieldset>
 <br>
-   <div class="form-group">
+<form class="form-group" action="modif.php?pro_id=<?php echo $pro_id ; ?>" method="POST">
    <img src="../jarditou_photos/<?php echo "$produit->pro_id.$produit->pro_photo"; ?>" class="img-fluid img-thumbnail rounded mx-auto d-block col-3" alt="<?php echo $produit->pro_libelle; ?>" title="<?php echo $produit->pro_libelle; ?>">
-    
-   <form method="post" action="modif.php?pro_id=<?php echo $pro_id ; ?>"> 
+    <div class="form-group">
    <label for="id">ID</label><br>
-    <input type="text" class="form-control" id="id" value=" <?php echo $produit->pro_id; ?>" readonly>
+    <input type="text" class="form-control" id="id" name="id" value=" <?php echo $produit->pro_id; ?>" readonly>
   </div>
 
 <br>
 
   <div class="form-group">
-    <label for="id">Référence</label><br>
-    <input type="text" class="form-control" id="id" value=" <?php echo $produit->pro_ref; ?>" readonly>
+    <label for="ref">Référence</label><br>
+    <input type="text" class="form-control" id="ref" name="ref" value=" <?php echo $produit->pro_ref; ?>" readonly>
   </div>
 
 <br>
 
   <div class="form-group">
-    <label for="id">Catégorie</label><br>
-    <input type="text" class="form-control" id="id" value=" <?php echo $produit->pro_cat_id; ?>" readonly>
+    <label for="categorie">Catégorie</label><br>
+    <input type="text" class="form-control" id="categorie" name="categorie" value=" <?php echo $produit->pro_cat_id; ?>" readonly>
   </div>
 
 <br>
 
   <div class="form-group">
-    <label for="id">Libellé</label><br>
-    <input type="text" class="form-control" id="id" value=" <?php echo $produit->pro_libelle; ?>" readonly>
+    <label for="libelle">Libellé</label><br>
+    <input type="text" class="form-control" id="libelle" name="libelle" value=" <?php echo $produit->pro_libelle; ?>" readonly>
   </div>
 
 <br>
 
 <div class="form-group">
     <label for="description">Description</label>
-    <textarea class="form-control" id="description" rows="3" readonly><?php echo $produit->pro_description; ?></textarea>
+    <textarea class="form-control" id="description" name="description" rows="3" readonly ><?php echo $produit->pro_description; ?></textarea>
   </div>
 
 <br>
 
   <div class="form-group">
-    <label for="id">Prix</label><br>
-    <input type="text" class="form-control" id="id" value=" <?php echo $produit->pro_prix; ?>" readonly>
+    <label for="prix">Prix</label><br>
+    <input type="text" class="form-control" id="prix" name="prix" value=" <?php echo $produit->pro_prix; ?>" readonly >
   </div>
 
 <br>
 
   <div class="form-group">
-    <label for="id">Stock</label><br>
-    <input type="text" class="form-control" id="id" value=" <?php echo $produit->pro_stock; ?>" readonly>
+    <label for="stock">Stock</label><br>
+    <input type="text" class="form-control" id="stock" name="stock" value=" <?php echo $produit->pro_stock; ?>" readonly>
   </div>
 
 <br>
 
   <div class="form-group">
-    <label for="id">Couleur</label><br>
-    <input type="text" class="form-control" id="id" value=" <?php echo $produit->pro_couleur; ?>" readonly>
+    <label for="couleur">Couleur</label><br>
+    <input type="text" class="form-control" id="couleur" name="couleur" value=" <?php echo $produit->pro_couleur; ?>" readonly >
   </div>
 
 <br>
 
-<label for="name">Produit bloqué : </label>
-<input type="radio" name="sexe" value="Male"> Oui
-<input type="radio" name="sexe" value="Female"> Non
+<?php if ($produit -> pro_bloque == 1): ?>
+        <div class="form-group">
+        <label for="bloque">Produit bloqué : </label>
+        <input type="radio" name="bloque" value="1" readonly checked > Oui
+        <input type="radio" name="bloque" value="0" readonly > Non <br>
+   </div>
+      <?php else: ?>
+        <div class="form-group">
+        <label for="bloque">Produit bloqué : </label>
+        <input type="radio" name="bloque" value="1" readonly > Oui
+        <input type="radio" name="bloque" value="0" readonly checked > Non <br>
+      </div>
+        <?php endif; ?>
+
+    Date d'ajout : <?php echo $produit -> pro_d_ajout . "<br><br>" ; ?>
+
+    Date de modification :
+    <?php
+      if ($produit -> pro_d_modif == NULL )
+      {
+        echo "Il n'y a pas eu de modification sur ce produit. <br><br> " ;
+      }
+      else
+      {
+        echo $produit -> pro_d_modif . "<br><br>" ;
+      }
+
+    ?> 
 
 <br><br>
-
-<label for="start">Date d'ajout :</label>
-<input type="date" id="start" name="trip-start" value="2011-07-22">
-
-<br><br>
-
-<label for="start">Date de modification :</label>
-<input type="date" id="start" name="trip-start" value="2011-07-22"> 
-
-<br><br>
-
-<input type="submit" value="Envoyer" class="btn btn-dark">  <a class="btn btn-dark" href="liste.php">Retour</a> <input type="submit" value="Modifier" class="btn btn-dark">
+<a class="btn btn-dark" href="liste.php">Retour</a> <input type="submit" value="Modifier" class="btn btn-dark">
 </form>
 
 <br><br>
