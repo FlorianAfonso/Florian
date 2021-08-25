@@ -108,6 +108,9 @@ catch (PDOException $exception)
 
 </section>
 
+<a class="btn btn-dark float-right" href="produits_ajout.php">Ajout d'un produit</a>
+<br><br>
+
 <footer class="navbar navbar-expand-sm navbar-dark bg-dark">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item"><a class="nav-link" href="#">Mentions légales</a></li>

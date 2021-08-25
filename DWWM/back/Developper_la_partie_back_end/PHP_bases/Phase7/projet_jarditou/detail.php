@@ -143,6 +143,7 @@
 
 <br><br>
 <a class="btn btn-dark" href="liste.php">Retour</a> <input type="submit" value="Modifier" class="btn btn-dark">
+<a class="btn btn-warning" href="confirmation_delete.php?pro_id=<?php echo $produit->pro_id ; ?>">Supprimer</a>
 </form>
 
 <br><br>

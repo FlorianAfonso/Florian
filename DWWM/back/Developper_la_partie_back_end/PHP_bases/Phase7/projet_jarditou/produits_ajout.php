@@ -1,47 +1,163 @@
-<?php
-//Récuperation des valeurs
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
 
-$produit_cat_id = $_POST['cat_nom'];
-$reference = $_POST['pro_ref'];
-$libelle = $_POST['pro_libelle'];
-$description = $_POST['pro_description'];
-$prix = $_POST['pro_prix'];
-$stock = $_POST['pro_stock'];
-$couleur = $_POST['pro_couleur'];
-$photo = $_POST['pro_photo'];
-$bloque = $_POST['pro_bloque'];
+    <?php
+        require "connexion_bdd.php" ;
+        $db = connexionBase() ;
+        $categorie = $db->prepare("SELECT cat_nom, cat_id  FROM categories ORDER BY cat_nom");
+        $categorie -> execute() ;
+    ?>
 
-var_dump($produit_cat_id);
-var_dump($reference);
-var_dump($libelle);
-var_dump($description);
-var_dump($prix);
-var_dump($stock);
-var_dump($couleur);
-var_dump($photo);
-var_dump($bloque);
+    <div class="container">
 
-require_once "connexion_bdd.php"; // Inclusion de notre bibliothèque de fonctions
-$db = connexionBase(); // Appel de la fonction de connexion
+    <a href="Index.html" title="Accueil">
+      <img src="../jarditou_photos/jarditou_logo.jpg" alt="Logo Jarditou" title="Logo Jarditou" width="210" height="70">
+    </a> 
 
-$d_ajout = date("y/m/d");
-//Requete sql pour insertion de données
-$requete = $db->prepare("INSERT INTO produits(pro_cat_id,pro_ref,pro_libelle,pro_description,pro_prix,pro_stock,pro_couleur,pro_photo,pro_d_ajout,pro_bloque) 
-                VALUES (:cat_nom, :pro_ref, :pro_libelle, :pro_description, :pro_prix, :pro_stock, :pro_couleur, :pro_photo, :pro_d_ajout, :pro_bloque)");
+        <h1 class="display-5 float-right">Tout le jardin</h1>
 
-$requete->bindValue(":cat_nom", $produit_cat_id);
-$requete->bindValue(":pro_ref", $reference);
-$requete->bindValue(":pro_libelle", $libelle);
-$requete->bindValue(":pro_description", $description);
-$requete->bindValue(":pro_prix", $prix);
-$requete->bindValue(":pro_stock", $stock);
-$requete->bindValue(":pro_couleur", $couleur);
-$requete->bindValue(":pro_photo", $photo);
-$requete->bindValue(":pro_d_ajout", $d_ajout);
-$requete->bindValue(":pro_bloque", $bloque);
+        <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="Index.html">Jarditou.com</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="Index.html">Accueil <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+        <a class="nav-link" href="liste.php">Tableau</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="Contact.html">Contact</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Votre promotion" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
+        </form>
+      </div>
+    </nav>
 
-$resultat = $requete->execute();
+<img src="../jarditou_photos/promotion.jpg" class="rounded" alt="Promotions" title="Promotions" width="100%">
 
-exit;
+    <br><br>
 
-?>
+    <form class="form-group" action="verif_ajout.php" method="POST">
+
+        <!-- Référence -->
+        <label for="ref">Référence</label>
+        <input type="text" class="form-control <?php if (isset($_GET['eref'])) { echo 'border border-danger'; } ?>" id="ref" name="ref" placeholder="Ex : barb004 (max. 10 caractères)">
+        <?php if (isset($_GET['eref'])) { echo '<i>La référence n\'a pas été renseignée, comporte des caractères spéciaux, ou comporte trop de caractères.</i> <br>'; } ?>
+    
+        <br>
+
+        <!-- Libellé -->
+        <label for="libelle">Libellé</label>
+        <input type="text" class="form-control <?php if (isset($_GET['elib'])) { echo 'border border-danger'; } ?>" id="libelle" name="libelle" placeholder="Ex : Zeus le barbecue (max. 200 caractères)">
+        <?php if (isset($_GET['elib'])) { echo '<i>Le libellé n\'a pas été renseignée, comporte des caractères spéciaux ou des chiffres ou comporte trop de caractères.</i> <br>'; } ?>
+
+        <br>
+
+        <!-- Catégorie --> 
+    
+        <div class="form-group">
+            <label for="categorie">Catégorie*</label>
+            <select id="categorie" name="categorie" class="form-control <?php if (isset($_GET['ecat'])) {echo 'border border-danger' ; } ?>">
+                <option value="" selected disabled>--</option>
+        <?php
+
+            while ($rowsCategorie = $categorie->fetch(PDO::FETCH_OBJ)):
+        ?>
+        <option value="<?php echo $rowsCategorie->cat_id; ?>">
+        <?php echo $rowsCategorie->cat_nom; ?>
+        </option>
+        <?php
+            endwhile;
+
+            $categorie->closeCursor(); 
+        ?>
+        </select>
+        <?php if (isset($_GET['ecat'])) {echo '<i>Veuillez séléctionner une catégorie.</i> <br>' ; } ?>
+        </div>
+  
+        <br>
+        
+        <!-- Description -->
+        <label for="description">Description</label>
+        <textarea class="form-control <?php if (isset($_GET['edesc'])) { echo 'border border-danger'; } ?> " name="description" id="description" placeholder="Ex : C'est un très beau barbecue et en plus il fait de très bonnes merguez ! (max. 1000 caractères)"></textarea>
+        <?php if (isset($_GET['edesc'])) { echo '<i>La description n\'a pas été renseignée ou comporte trop de caractères.</i> <br>'; } ?>
+        <br>
+
+        <!-- Prix -->
+        <label for="prix">Prix</label>
+        <input type="text" class="form-control <?php if (isset($_GET['eprix'])) { echo 'border border-danger'; } ?>" id="prix" name="prix" placeholder="Ex : 666.95 (max. 6 caractères dont 2 après la virgule obligatoires)">
+        <?php if (isset($_GET['eprix'])) { echo '<i>Le prix n\'a pas été renseignée, comporte des caractères spéciaux ou des lettres, ou comporte trop de caractères.</i> <br>'; } ?>
+
+        <br>
+
+        <!-- Stock -->
+        <label for="stock">Stock</label>
+        <input type="text" class="form-control <?php if (isset($_GET['estock'])) { echo 'border border-danger'; } ?>" id="stock" name="stock" placeholer="Ex : 2 (max. 11 caractères)">
+        <?php if (isset($_GET['estock'])) { echo '<i>Le stock n\'a pas été renseignée, comporte des caractères spéciaux ou des lettres, ou comporte trop de caractères.</i> <br>'; } ?>
+        
+        <!-- Couleur -->
+        <br>
+        <label for="couleur">Couleur</label>
+        <input type="text" class="form-control <?php if (isset($_GET['ecolor'])) { echo 'border border-danger'; } ?>" id="couleur" name="couleur" placeholder="Ex : Pourpre (max. 30 caractères)">
+        <?php if (isset($_GET['ecolor'])) { echo '<i>La couleur n\'a pas été renseignée, comporte des caractères spéciaux ou des chiffres ou comporte trop de caractères.</i> <br>'; } ?>
+
+        <br>
+
+        <!-- Produits bloqués -->
+        <label for="bloque">Produit bloqué :</label>
+        <input name="bloque" id="bloque" type="radio" value="1"> Oui
+        <input name="bloque" type="radio" value="0" checked> Non
+
+        <br><br>
+
+        <div class="float-right">
+            <button class="btn btn-success"> Enregistrer</button>
+            <a href="liste.php" class="btn btn-danger"> Annuler</a>
+        </div>
+        <br>
+    </form>
+
+
+
+<br>
+    <footer class="navbar navbar-expand-lg navbar-dark border-light bg-dark rounded">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link text-muted" href="#">Mentions légales <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-muted" href="#">Horaires</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-muted" href="#">Plan du site</a>
+          </li>
+      </ul>
+    </div>
+</footer>
+<br><br>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
