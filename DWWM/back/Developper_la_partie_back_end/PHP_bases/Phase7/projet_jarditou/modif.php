@@ -55,8 +55,17 @@
         <img class="img-fluid img-responsive w-100" src="../jarditou_photos/promotion.jpg" alt="Image">
 <br><br>
 
-<form class="form-group" action="verif_modif.php" method="POST">
-   <img src="../jarditou_photos/<?php echo "$produit->pro_id.$produit->pro_photo"; ?>" class="img-fluid img-thumbnail rounded mx-auto d-block col-3" alt="<?php echo $produit->pro_libelle; ?>" title="<?php echo $produit->pro_libelle; ?>">
+<form class="form-group" action="verif_modif.php" method="POST" enctype="multipart/form-data"> 
+<img src="jarditou_photos/<?php echo "$produit->pro_id.$produit->pro_photo" ; ?>" width="100px" class="img-fluid rounded mx-auto d-block col-3" alt="<?php echo $produit->pro_libelle; ?>" title="<?php echo $produit->pro_libelle; ?>">
+     <div class="form-group">
+        <label for="photo">Photo</label><br>
+        <input type="file" <?php if (isset($_GET['ephoto'])) { echo 'class="border border-danger"'; } ?> id="photo" name="photo"><br>
+        <?php
+        if (isset($_GET['ephoto'])) { echo 'class="<i>Le format de l\'image doit être en .jpg, .jpeg ou .png.</i>'; }
+        ?>
+        <input type="hidden" id="oldext" name="oldext" value="<?php echo $produit->pro_photo; ?>">
+    </div>
+
    <div class="form-group"> 
    <label for="id">ID</label><br>
     <input type="text" class="form-control" id="id" name="id" value=" <?php echo $produit->pro_id; ?>" readonly>

@@ -53,7 +53,15 @@
 
     <br><br>
 
-    <form class="form-group" action="verif_ajout.php" method="POST">
+    <form class="form-group" action="verif_ajout.php" method="POST" enctype="multipart/form-data">
+
+    <div class="form-group">
+            <label for="photo">Photo*</label><br>
+            <input type="file" <?php if (isset($_GET['ephoto'])) { echo 'class="border border-danger"'; } ?> id="photo" name="photo"><br>
+            <?php
+            if (isset($_GET['ephoto'])) { echo '<i>Le format de l\'image doit être en .jpg, .jpeg ou .png.</i>'; }
+            ?>
+        </div>
 
         <!-- Référence -->
         <label for="ref">Référence</label>
