@@ -1,0 +1,24 @@
+client : 
+
+nom
+prenom
+adresse
+telephone
+date inscription
+
+
+livre :
+
+titre livre
+auteur
+editeur
+numero du livre
+couleur
+
+emprunt de livre : 
+
+numero du livre 
+date emprunt
+coordonnee du client
+
+
