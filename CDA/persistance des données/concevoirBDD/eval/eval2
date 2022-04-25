@@ -1,0 +1,63 @@
+2 -> Pour chaque association, expliquer la transformation du MCD en MPD :
+
+Client (N°Client, NomClient, PrenomClient).
+
+Commande (N°Commande, DateCommande, MontantCommande, N°Client).
+
+SeComposeDe (N°Commande, N°Article, Qte, TauxTva).
+
+Article (N°Article, DesignationArticle, PUArticle)
+
+
+
+3 -> Pour chaque table, expliquez (en justifiant) les champs qui servent de clés (primaires ou étrangères)
+ 
+ Table "Client" : la clé primaire c'est le numero_client , elle permet d'identifié le client
+ 
+ Table "Commande" : 
+la clé primaire c'est le numero_commande qui permet d'identifier et retrouver la commande 
+la clé etrangere c'est le numero_client , cela permet d'identifier qui à commander quoi. 
+ 
+  Table "SeComposeDe" :
+les clés primaire c'est le numero_article, ce qui permet de l'identifier mais aussi le numero_commande ce qui permet d'identifier quel commande contient quel article .
+
+ Table "Article" :
+la clé primaire c'est le numero_article qui permet de l'identifier
+ 
+
+4 -> Générez le script de création de la base de données
+
+CREATE TABLE client(
+   numero_client COUNTER,
+   NomClient VARCHAR(50),
+   PrenomClient VARCHAR(50),
+   PRIMARY KEY(numero_client)
+);
+
+CREATE TABLE commande(
+   numero_commande COUNTER,
+   DateCommande VARCHAR(50),
+   MontantCommande VARCHAR(50),
+   numero_client INT NOT NULL,
+   PRIMARY KEY(numero_commande),
+   FOREIGN KEY(numero_client) REFERENCES client(numero_client)
+);
+
+CREATE TABLE Article(
+   numero_article COUNTER,
+   DesignationArticle VARCHAR(50),
+   PUArticle VARCHAR(50),
+   PRIMARY KEY(numero_article)
+);
+
+CREATE TABLE SeComposeDe(
+   numero_commande_1 INT,
+   numero_article_1 INT,
+   Qte VARCHAR(50),
+   TauxTva VARCHAR(50),
+   numero_commande VARCHAR(50),
+   numero_article VARCHAR(50),
+   PRIMARY KEY(numero_commande_1, numero_article_1),
+   FOREIGN KEY(numero_commande_1) REFERENCES commande(numero_commande),
+   FOREIGN KEY(numero_article_1) REFERENCES Article(numero_article)
+);
